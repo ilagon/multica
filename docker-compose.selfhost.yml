@@ -27,6 +27,8 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-multica}
     volumes:
       - pgdata:/var/lib/postgresql/data
+    networks:
+      - dokploy-network
     restart: unless-stopped
     healthcheck:
       test:
