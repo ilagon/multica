@@ -47,6 +47,8 @@ services:
       - "127.0.0.1:${BACKEND_PORT:-8090}:8090"
     volumes:
       - backend_uploads:/app/data/uploads
+    networks:
+      - dokploy-network
     environment:
       DATABASE_URL: postgres://${POSTGRES_USER:-multica}:${POSTGRES_PASSWORD:-multica}@postgres:5432/${POSTGRES_DB:-multica}?sslmode=disable
       PORT: "8080"
@@ -126,6 +128,8 @@ services:
       - backend
     ports:
       - "127.0.0.1:${FRONTEND_PORT:-3010}:3010"
+    networks:
+      - dokploy-network
     environment:
       HOSTNAME: "0.0.0.0"
     restart: unless-stopped
